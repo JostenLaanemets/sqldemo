@@ -196,3 +196,4 @@ for row in results:
 # Andmebaasiga ühenduse katkestamine
 conn.close()
 
+
