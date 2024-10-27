@@ -36,4 +36,3 @@ if m1g_id:
 conn.commit()
 conn.close()
 
-

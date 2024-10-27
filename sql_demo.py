@@ -191,8 +191,6 @@ results = cursor.fetchall()
 for row in results:
     print(row)
 
-
-
 # Andmebaasiga ühenduse katkestamine
 conn.close()
 

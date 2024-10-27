@@ -38,7 +38,6 @@ for county in counties:
         cursor.execute("UPDATE Liiklusonnetused SET MAAKOND_ID = ? WHERE Maakond = ?", (county_id[0], county))
 
 
-
 conn.commit()
 
 conn.close()
