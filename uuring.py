@@ -51,7 +51,6 @@ if pikim_auto:
     print(f"Pikim auto on: {mark} {mudel} (Pikkus: {pikkus} mm)")
 
 
-#
-#
+
 
 conn.close()
