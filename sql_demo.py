@@ -161,9 +161,9 @@ cursor.execute('''
     INNER JOIN Kategooriad ON Soidukid.KATEGOORIA_ID = Kategooriad.KATEGOORIA_ID
     LIMIT 3
 ''')
-results = cursor.fetchall()
-for row in results:
-    print(row)
+valjund = cursor.fetchall()
+for r in valjund:
+    print(r)
 
 print("--------------------------")
 
@@ -174,9 +174,9 @@ cursor.execute('''
     LEFT JOIN Kategooriad ON Soidukid.KATEGOORIA_ID = Kategooriad.KATEGOORIA_ID
     LIMIT 3
 ''')
-results = cursor.fetchall()
-for row in results:
-    print(row)
+valjund = cursor.fetchall()
+for r in valjund:
+    print(r)
 
 print("--------------------------")
 
@@ -187,9 +187,9 @@ cursor.execute('''
     CROSS JOIN Kategooriad
     LIMIT 6
 ''')
-results = cursor.fetchall()
-for row in results:
-    print(row)
+valjund = cursor.fetchall()
+for r in valjund:
+    print(r)
 
 
 

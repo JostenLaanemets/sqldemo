@@ -8,13 +8,12 @@ cursor.execute('''
         (MAAKOND_ID INTEGER PRIMARY KEY AUTOINCREMENT,
         MAAKOND TEXT NOT NULL UNIQUE)''')
 
-counties = ['Harju', 'Tartu', 'Võru', 'Põlva', 'Valga', 'Viljandi', 
+maakonnad = ['Harju', 'Tartu', 'Võru', 'Põlva', 'Valga', 'Viljandi', 
             'Pärnu', 'Rapla', 'Lääne-Viru', 'Ida-Viru', 'Lääne', 
             'Hiiu', 'Saare', 'Järva', 'Jõgeva']
 
-for county in counties:
-    cursor.execute("INSERT OR IGNORE INTO Maakonnad (MAAKOND) VALUES (?)", (county,))
-
+for c in maakonnad:
+    cursor.execute("INSERT OR IGNORE INTO Maakonnad (MAAKOND) VALUES (?)", (c,))
 
 try:
     cursor.execute("ALTER TABLE Soidukid ADD COLUMN MAAKOND_ID INTEGER")
@@ -26,21 +25,15 @@ try:
 except sqlite3.OperationalError as e:
     print(e)
 
-
-for county in counties:
-    cursor.execute("SELECT MAAKOND_ID FROM Maakonnad WHERE MAAKOND = ?", (county,))
-    county_id = cursor.fetchone()
-
-    if county_id:
-        cursor.execute("UPDATE Soidukid SET MAAKOND_ID = ? WHERE VKOM_MAAKOND = ?", (county_id[0], county))
-
+for c in maakonnad:
+    cursor.execute("SELECT MAAKOND_ID FROM Maakonnad WHERE MAAKOND = ?", (c,))
+    maakonna_id = cursor.fetchone()
+    if maakonna_id:
+        cursor.execute("UPDATE Soidukid SET MAAKOND_ID = ? WHERE VKOM_MAAKOND = ?", (maakonna_id[0], c))
         county = county + " maakond"
-        cursor.execute("UPDATE Liiklusonnetused SET MAAKOND_ID = ? WHERE Maakond = ?", (county_id[0], county))
-
-
+        cursor.execute("UPDATE Liiklusonnetused SET MAAKOND_ID = ? WHERE Maakond = ?", (maakonna_id[0], c))
 
 conn.commit()
-
 conn.close()
 
 
