@@ -16,8 +16,6 @@ cursor.execute('''
 liiklusonnetused = cursor.fetchone()[0]
 print(f"Kokku on {liiklusonnetused} liiklusõnnetust.")
 
-
-
 ### AVERAGE ###
 cursor.execute('''
     SELECT AVG(MOOTORI_VOIMSUS)
@@ -59,8 +57,6 @@ kiirus = int(cursor.fetchone()[0])
 print(f"Kõige väiksem määratud sõidukiirus on {kiirus} km/h.")
 
 
-
-
 ### GROUP BY ###
 ### ORDER BY ###
 ### LIMIT    ###
@@ -88,14 +84,14 @@ print(f"Populaarseim auto Põlvas on: {mark} {mudel} (Arv: {kogus})")
 
 
 
-### HAVING ###
+### HAVING ### (WHERE)
 cursor.execute('''
     SELECT COUNT(*) 
     FROM Soidukid
     WHERE SOIDUMYRA > 90
 ''')
-arv = cursor.fetchone()[0]
-print(f"Autode arv, mille sõidumüra on suurem kui 90 db: {arv}")
+myra = cursor.fetchone()[0]
+print(f"Autode arv, mille sõidumüra on suurem kui 90 db: {myra}")
 
 
 ################
@@ -126,7 +122,6 @@ try:
     cursor.execute('''ALTER TABLE Tootjariigid ADD COLUMN TEHASE_NIMI TEXT''')
     conn.commit()
 except sqlite3.OperationalError as e:
-    cursor.execute('''ALTER TABLE Tootjariigid ADD COLUMN TEHASE_NIMI TEXT''')
     print(e)
 ### RENAME ###
 
